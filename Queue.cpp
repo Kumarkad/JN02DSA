@@ -14,6 +14,22 @@ class Queue{
     void insert(int element){
         if (isFull()==1)
             cout<<"Queue is full !!!";
+        else{#include <iostream>
+#define SIZE 5
+using namespace std;
+
+class Queue{
+    int data[SIZE];
+    int front,rear;
+    
+    public:
+    Queue()
+    {
+        front=rear=-1;
+    }
+    void insert(int element){
+        if (isFull()==1)
+            cout<<"Queue is full !!!";
         else{
             data[++rear]=element;
             if(front==-1)
@@ -43,7 +59,7 @@ class Queue{
     int peek(){
         if (isEmpty()==1)
             return -1;
-        return data[rear];
+        return data[front];
     }
 };
 int main()
@@ -61,3 +77,4 @@ int main()
     cout<<"\nElement removed from Queue : "<<q.remove();
     return 0;
 }
+
