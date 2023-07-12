@@ -1,3 +1,7 @@
+/******************************************************************************
+Program to demonstrate Binary Search
+
+*******************************************************************************/
 
 #include <iostream>
 
@@ -31,6 +35,9 @@ int main()
     cout<<"Binary Search"<<endl;
     BinarySearch bs;
     int res=bs.search(20);
-    cout<<res;
+    if (res==-1)
+        cout<<"Element is not found in array !!!"<<endl;
+    else
+        cout<<"Element is found at index "<<res;
     return 0;
 }
