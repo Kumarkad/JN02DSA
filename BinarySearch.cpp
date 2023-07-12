@@ -16,7 +16,7 @@ class BinarySearch{
     {
         int start,end,mid;
         start=0;
-        end=10;
+        end=sizeof(arr)/sizeof(arr[0]);
         while (start<=end){
             mid=(start+end)/2;
             if (arr[mid]<element)
