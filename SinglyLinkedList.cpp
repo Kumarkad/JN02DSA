@@ -40,9 +40,10 @@ class LinkedList{
                     t->next=newnode;
                 }
             }
+             cin>>no;
            
         }
-         cin>>no;
+        
     }
     
     void display(){
@@ -84,7 +85,39 @@ class LinkedList{
     
     void deleteLast()
     {
-        
+       Node *p,*t;
+       t=head;
+       while(t->next!=NULL)
+       {
+           p=t;
+           t=t->next;
+       }
+       p->next=NULL;
+       delete t;
+    }
+    
+    void insertAfterGivenNode(int no,int n)
+    {
+       Node *newnode,*t;
+       newnode=new Node(no);
+       if(head==NULL)
+            head=newnode;
+       else
+       {
+           t=head;
+           while(t->data!=n && t!=NULL)
+           {
+               t=t->next;
+           }
+           if (t==NULL)
+           
+               cout<<"Element not present in List !!! ";
+           else
+           {
+               newnode->next=t->next;
+               
+           }
+       }
     }
 };
 
