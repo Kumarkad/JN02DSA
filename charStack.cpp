@@ -17,14 +17,14 @@ class Stack{
     {
         top=-1;
     }
-    void push(int element){
+    void push(char element){
         if (isFull()==1)
             cout<<"Stack is full !!!";
         else
             data[++top]=element;
     }
     
-    int pop(){
+    char pop(){
         if (isEmpty()==1)
             return -1;
         else
@@ -47,18 +47,93 @@ class Stack{
             return -1;
         return data[top];
     }
+ 
 };
+   int getPrecedence(char ch)
+    {
+        if(ch =='^')
+            return 3;
+        else if (ch=='*' || ch=='/')
+            return 2;
+        else if (ch=='+'|| ch=='-')
+            return 1;
+        else
+            return 0;
+    }
+    bool isOperator(char ch)
+    {
+        if (ch=='+' || ch=='-' || ch=='/' || ch=='*' || ch=='^')
+            return true;
+        else
+            return false;
+
+    }
+    
 int main()
 {
-    cout<<"Static Implementation of Stack";
+    cout<<"------ Infix to Postfix ------"<<endl;
     Stack st;
-    st.push('A');
-    st.push('B');
-    cout<<"\nStack is Empty ? "<<st.isEmpty();
-    cout<<"\nStack is Full ? "<<st.isFull();
-    cout<<"\nElement is at top position : "<<(char)st.peek();
-    cout<<"\nElement removed from Stack : "<<(char)st.pop();
-    cout<<"\nElement removed from Stack : "<<(char)st.pop();
-    cout<<"\nElement removed from Stack : "<<st.pop();
+
+    char infix[20],postfix[20];
+    int j=0;
+
+    cout<<"Enter the Infix expression : ";
+    cin>>infix;
+
+    cout<<"\nInfix :"<<infix;
+
+    
+    
+    for(int i=0;infix[i]!='\0';i++)
+    {
+        char symbol=infix[i];
+        if(isalpha(symbol) || isdigit(symbol))
+            postfix[j]=symbol;
+        else if (symbol=='(')
+            st.push(symbol);
+        else if (symbol==')')
+        {
+            while(st.peek()!='(')
+            {
+                postfix[++j]=st.pop();
+                st.pop();
+            }
+            st.pop();
+
+        }
+        else{
+            while(!st.isEmpty() && getPrecedence(symbol)<=getPrecedence(st.peek())){
+                postfix[j++]=st.peek();
+                st.pop();
+            }
+            st.push(symbol);
+        }
+    }
+        /*
+        else if(isOperator(symbol))
+        {
+            if(st.isEmpty()==1)
+                st.push(symbol);
+            else if (symbol=='(')
+                st.push(symbol);
+            else if (getPrecedence(symbol)>=getPrecedence(st.peek()))
+                st.push(symbol);
+            else
+            {
+                while(getPrecedence(symbol)>=getPrecedence(st.peek()))
+                {
+                    postfix[j++]=st.pop();
+                }
+            }
+        }
+
+    }*/
+    while(!st.isEmpty())
+    {
+        postfix[j++]=st.pop();
+    }
+    postfix[j]='\0';
+    cout<<"\nThe Postfix expression is : "<<postfix;
+
     return 0;
 }
