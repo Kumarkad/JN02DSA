@@ -56,9 +56,9 @@ int main()
     st.push('B');
     cout<<"\nStack is Empty ? "<<st.isEmpty();
     cout<<"\nStack is Full ? "<<st.isFull();
-    cout<<"\nElement is at top position : "<<st.peek();
-    cout<<"\nElement removed from Stack : "<<st.pop();
-    cout<<"\nElement removed from Stack : "<<st.pop();
+    cout<<"\nElement is at top position : "<<(char)st.peek();
+    cout<<"\nElement removed from Stack : "<<(char)st.pop();
+    cout<<"\nElement removed from Stack : "<<(char)st.pop();
     cout<<"\nElement removed from Stack : "<<st.pop();
     return 0;
 }
